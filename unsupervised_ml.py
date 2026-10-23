@@ -1,14 +1,8 @@
-#Prepare the data
-#Label data
-#Create model
-#Train model
-#Predict
-#Make readable format
-
 from sklearn.cluster import KMeans 
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
+#Prepare data
 customers = [
     [1000, 2],
     [1500, 3],
@@ -25,7 +19,10 @@ customers = [
 scaler=StandardScaler()
 scaled_data=scaler.fit_transform(customers)
 
+#Create model
 model = KMeans(n_clusters=3, random_state=42, n_init=10)
+
+#Train model
 model.fit(scaled_data)
 
 labels = model.labels_
@@ -45,6 +42,7 @@ for row in customers:
     spending.append(row[0])
     visits.append(row[1])
     
-    
+ 
+ #Visualization   
 plt.scatter(spending, visits, c=labels)
 plt.show()
